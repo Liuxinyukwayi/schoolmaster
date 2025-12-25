@@ -1,0 +1,29 @@
+FROM php:7.4-apache
+
+# 安装系统依赖和 PHP 扩展
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    libcurl4-openssl-dev \
+    libonig-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) \
+    mysqli \
+    pdo \
+    pdo_mysql \
+    mbstring \
+    zip \
+    curl \
+    gd \
+    opcache \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# 启用 Apache 模块
+RUN a2enmod rewrite headers
+
+# 设置工作目录
+WORKDIR /var/www/html
+

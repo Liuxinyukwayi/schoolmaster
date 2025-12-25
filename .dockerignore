@@ -1,0 +1,11 @@
+.git
+.gitignore
+README.md
+LICENSE
+LICENSE.txt
+changelog.txt
+docker-compose.yml
+Dockerfile
+.dockerignore
+*.md
+
