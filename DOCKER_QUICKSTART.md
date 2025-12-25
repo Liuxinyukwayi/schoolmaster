@@ -26,7 +26,8 @@ docker-compose ps
 docker-compose logs -f
 
 # 查看特定服务日志
-docker-compose logs -f web
+docker-compose logs -f nginx
+docker-compose logs -f php
 docker-compose logs -f db
 ```
 
@@ -91,7 +92,10 @@ docker-compose up -d
 ### 进入容器
 ```bash
 # 进入 PHP 容器
-docker-compose exec web bash
+docker-compose exec php bash
+
+# 进入 Nginx 容器
+docker-compose exec nginx sh
 
 # 进入 MySQL 容器
 docker-compose exec db bash
@@ -108,10 +112,10 @@ docker-compose exec db mysql -uroot -proot
 
 ```bash
 # Windows (Git Bash 或 WSL)
-docker-compose exec web chown -R www-data:www-data /var/www/html
-docker-compose exec web chmod -R 755 /var/www/html/Application/Runtime
-docker-compose exec web chmod -R 755 /var/www/html/Application/Common/Conf
-docker-compose exec web chmod -R 755 /var/www/html/Public/Upload
+docker-compose exec php chown -R www-data:www-data /var/www/html
+docker-compose exec php chmod -R 755 /var/www/html/Application/Runtime
+docker-compose exec php chmod -R 755 /var/www/html/Application/Common/Conf
+docker-compose exec php chmod -R 755 /var/www/html/Public/Upload
 ```
 
 ## 重新安装
@@ -154,20 +158,31 @@ ports:
 ### 4. PHP 扩展缺失
 检查 Dockerfile 中是否包含所需扩展，然后重新构建：
 ```bash
-docker-compose build --no-cache web
+docker-compose build --no-cache php
 docker-compose up -d
+```
+
+### 5. Nginx 配置错误
+检查 Nginx 配置并重新加载：
+```bash
+# 测试 Nginx 配置
+docker-compose exec nginx nginx -t
+
+# 重新加载 Nginx
+docker-compose exec nginx nginx -s reload
 ```
 
 ## 服务说明
 
-- **web**: PHP 7.4 + Apache 服务，运行 SchoolCMS 应用
+- **nginx**: Nginx Web 服务器，处理 HTTP 请求
+- **php**: PHP 7.4-FPM 服务，处理 PHP 脚本
 - **db**: MySQL 5.7 数据库服务
 - **phpmyadmin**: 数据库管理工具（可选）
 
 ## 技术栈
 
-- PHP: 7.4
-- Apache: 2.4
+- PHP: 7.4-FPM
+- Nginx: Alpine (最新稳定版)
 - MySQL: 5.7
 - phpMyAdmin: Latest
 

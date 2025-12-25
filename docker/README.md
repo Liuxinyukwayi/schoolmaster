@@ -3,7 +3,9 @@
 ## 文件结构
 
 - `docker/php/php.ini` - PHP 配置文件
-- `docker/apache/000-default.conf` - Apache 虚拟主机配置
+- `docker/php/www.conf` - PHP-FPM 配置文件
+- `docker/nginx/nginx.conf` - Nginx 主配置文件
+- `docker/nginx/default.conf` - Nginx 虚拟主机配置
 - `docker/mysql/my.cnf` - MySQL 配置文件
 
 ## 使用方法

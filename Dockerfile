@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.4-fpm
 
 # 安装系统依赖和 PHP 扩展
 RUN apt-get update && apt-get install -y \
@@ -20,9 +20,6 @@ RUN apt-get update && apt-get install -y \
     opcache \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# 启用 Apache 模块
-RUN a2enmod rewrite headers
 
 # 设置工作目录
 WORKDIR /var/www/html
