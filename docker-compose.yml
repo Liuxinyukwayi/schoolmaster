@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Nginx Web 服务器
   nginx:
-    image: nginx:alpine
+    image: crpi-29ns4nxq5xxuk3v4.cn-hangzhou.personal.cr.aliyuncs.com/wenhegantian/nginx:latest
     container_name: schoolcms-nginx
     ports:
       - "8080:80"
@@ -35,7 +35,7 @@ services:
 
   # MySQL 数据库服务
   db:
-    image: mysql:5.7
+    image: crpi-29ns4nxq5xxuk3v4.cn-hangzhou.personal.cr.aliyuncs.com/wenhegantian/mysql:5.7
     container_name: schoolcms-db
     ports:
       - "3306:3306"
@@ -55,7 +55,7 @@ services:
 
   # phpMyAdmin (可选，用于数据库管理)
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: crpi-29ns4nxq5xxuk3v4.cn-hangzhou.personal.cr.aliyuncs.com/wenhegantian/phpmyadmin:latest
     container_name: schoolcms-phpmyadmin
     ports:
       - "8081:80"

@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM crpi-29ns4nxq5xxuk3v4.cn-hangzhou.personal.cr.aliyuncs.com/wenhegantian/php:7.4-fpm
 
 # 安装系统依赖和 PHP 扩展
 RUN apt-get update && apt-get install -y \
