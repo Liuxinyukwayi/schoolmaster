@@ -1,6 +1,9 @@
 FROM php:7.4-fpm
 
 # 安装 mysqli 及常用扩展
+RUN sed -i 's@deb.debian.org@mirrors.aliyun.com@g' /etc/apt/sources.list \
+ && sed -i 's@security.debian.org@mirrors.aliyun.com@g' /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     libpng-dev \
