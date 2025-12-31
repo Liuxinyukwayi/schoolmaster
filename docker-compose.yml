@@ -19,7 +19,9 @@ services:
 
   # PHP-FPM 服务
   php:
-    image: crpi-29ns4nxq5xxuk3v4.cn-hangzhou.personal.cr.aliyuncs.com/wenhegantian/php:7.4-fpm
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
     container_name: schoolcms-php
     volumes:
       - ./:/var/www/html
